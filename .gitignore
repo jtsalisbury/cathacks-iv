@@ -63,3 +63,6 @@ typings/
 # generated files
 *.css
 *.css.map
+
+# uploaded files
+uploads/

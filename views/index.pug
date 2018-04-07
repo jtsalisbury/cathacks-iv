@@ -15,7 +15,7 @@ block content
         input#submit.form_control(type='submit', name='Submit')
 
   div#uploadContainer.container
-    form(action='/upload', method='post')
+    form(action='/upload', method='post', enctype='multipart/form-data')
      
       div.form_group
         label(for='file') File:

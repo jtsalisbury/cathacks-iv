@@ -5,4 +5,13 @@ body {
 a {
   color: #00B7FF; }
 
+.error {
+  padding: 20px;
+  background-color: #f45c42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 32px; }
+
 /*# sourceMappingURL=style.css.map */
