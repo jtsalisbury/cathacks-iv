@@ -6,6 +6,7 @@
     "extends": "google",
     "rules": {
     	"new-cap": "off",
-    	"comma-dangle": "off"
+    	"comma-dangle": "off",
+    	"linebreak-style": "off"
     	}
 }

@@ -5,7 +5,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let sassMiddleware = require('node-sass-middleware');
 
-var indexRouter = require('./routes/index');
+let indexRouter = require('./routes/index');
 
 let app = express();
 
