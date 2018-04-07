@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var CsvData = sequelize.define('CsvData', {
+  let CsvData = sequelize.define('CsvData', {
     path: DataTypes.STRING,
     title: DataTypes.STRING,
     start_date: DataTypes.DATE,
