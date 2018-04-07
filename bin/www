@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('cathacks-iv:server');
 var http = require('http');
+var models = require('../models');
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +89,17 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+/**
+ * Connect to database
+ */
+models.sequelize.sync().then(function() {
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+  server.listen(port, function() {
+    debug('Express server listening on port ' + server.address().port);
+  });
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
