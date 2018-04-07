@@ -1,5 +1,27 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h3 Welcome to #{title}
+
+  p View Data or Upload
+
+  div#viewContainer.container
+    form(action='/viz', method='post')
+      div.form_group
+        label(for='trend') Trend:
+        select.trend.form_control(name='trend')
+          option(value='test1') Test 1
+      div.form_group
+        input#submit.form_control(type='submit', name='Submit')
+
+  div#uploadContainer.container
+    form(action='/upload', method='post')
+     
+      div.form_group
+        label(for='file') File:
+        input.file.form_control(type='file', name='file')
+      div.form_group
+        label(for='title') Title:
+        input.title.form_control(type='text', name='title')
+      div.form_group
+        input#submit.form_control(type='submit', name='Submit')
