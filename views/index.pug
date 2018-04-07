@@ -1,27 +1,41 @@
 extends layout
 
 block content
-  h3 Welcome to #{title}
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js')
+  script(src='javascript/index.js')
+  link(href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css', rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css?family=Barlow', rel='stylesheet')
 
-  p View Data or Upload
+  
 
-  div#viewContainer.container
-    form(action='/viz', method='post')
-      div.form_group
-        label(for='trend') Trend:
-        select.trend.form_control(name='trend')
-          option(value='test1') Test 1
-      div.form_group
-        input#submit.form_control(type='submit', name='Submit')
 
-  div#uploadContainer.container
-    form(action='/upload', method='post', enctype='multipart/form-data')
-     
-      div.form_group
-        label(for='file') File:
-        input.file.form_control(type='file', name='file')
-      div.form_group
-        label(for='title') Title:
-        input.title.form_control(type='text', name='title')
-      div.form_group
-        input#submit.form_control(type='submit', name='Submit')
+
+
+  div.container
+    h1.header Welcome to #{title}
+
+    div#accordion.section
+      a.accordionHeader View
+      div.accordionSection
+        form(action='/viz', method='post')
+          div.form_group
+            label(for='trend') Trend:
+            select.trend.form_control(name='trend')
+              option(value='test1') Test 1
+          div.form_group
+            input#submit.form_control(type='submit', name='Submit')
+
+      a.accordionHeader Upload
+
+      div#uploadContainer.container.accordionSection(style='display: none')
+        form(action='/upload', method='post', enctype='multipart/form-data')
+         
+          div.form_group
+            label(for='file') File:
+            input.file.form_control(type='file', name='file')
+          div.form_group
+            label(for='title') Title:
+            input.title.form_control(type='text', name='title')
+          div.form_group
+            input#submit.form_control(type='submit', name='Submit')
