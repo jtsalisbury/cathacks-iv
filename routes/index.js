@@ -61,7 +61,7 @@ router.get('/viz', function(req, res, next) {
     'test3': ['data3.csv', 'date', 'close', '1-May-12', '26-Mar-12']
   };
 
-  res.render('viz', {title: 'View Data',
+  res.render('viz', {title: 'DVTIO',
     curTrend: trend, matches: encodeURI(JSON.stringify(matches))});
 });
 

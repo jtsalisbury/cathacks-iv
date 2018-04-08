@@ -23,9 +23,12 @@ app.use(sassMiddleware({
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/public', express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/favicon.ico', express.static('public/images/favicon.ico'));
 
 app.use('/', indexRouter);
 
