@@ -50,7 +50,7 @@ router.post('/upload', (req, res, next) => {
 
         // if the file was uploaded successfully
         // then parse the csv and add it to the database
-        files.file.title = req.body.title;
+        files.file.title = fields.title;
         fs.createReadStream(files.file.path)
           .pipe(csv())
           .on('error', (err) => {
