@@ -7,6 +7,8 @@
     "rules": {
     	"new-cap": "off",
     	"comma-dangle": "off",
-    	"linebreak-style": "off"
+    	"linebreak-style": "off",
+    	"require-jsdoc": "off",
+    	"guard-for-in": "off"
     	}
 }
