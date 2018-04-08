@@ -1,6 +1,9 @@
 let express = require('express');
 let router = express.Router();
 let formidable = require('formidable');
+let models = require('../models');
+let Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,6 +31,25 @@ router.post('/upload', (req, res, next) => {
 // Take the trend we are interested in and compile a list of matching ones
 router.get('/viz', function(req, res, next) {
   let trend = req.query.trend;
+
+  models.Trend.find({
+    order: [
+      Sequelize.fn( 'RAND' ),
+    ]
+    }).then(function(trend) {
+      if (trend != null) {
+        models.Trend.findAll({
+          where: {
+            trendlineCoef: {
+              [Op.between]: [trend.trendlineCoef-.5, trend.trendlineCoef+.5]
+            }
+          }
+        }).then(function(trends) {
+          console.log('Found this many trends:' + trends.length);
+        });
+      }
+    }
+  );
 
   let matches = {
   // Trend Identifier = [file name, x column, y column,
