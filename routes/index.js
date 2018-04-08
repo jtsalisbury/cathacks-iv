@@ -19,15 +19,25 @@ router.post('/upload', (req, res, next) => {
           errMsg: 'File Upload Failed!'
         });
       } else {
-        res.redirect('/viz?trend=' + fields.title);
+        // This passes the current trend we are interested in
+        res.redirect('/viz?curTrend=' + fields.title);
       }
   });
 });
 
+// Take the trend we are interested in and compile a list of matching ones
 router.get('/viz', function(req, res, next) {
   let trend = req.query.trend;
 
-  res.render('viz', {title: 'View Data', trend: trend});
+  let matches = {
+  // Trend Identifier = [file name, x column, y column,
+  // start date (string), end date (string)]
+    'test1': ['data.csv', 'date', 'close', '1-May-12', '26-Mar-12'],
+    'test2': ['data2.csv', 'date', 'close', '1-May-12', '26-Mar-12']
+  };
+
+  res.render('viz', {title: 'View Data',
+    curTrend: trend, matches: encodeURI(JSON.stringify(matches))});
 });
 
 module.exports = router;

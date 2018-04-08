@@ -65,9 +65,6 @@ select {
   border-radius: 4px;
   border: 1px solid #eee; }
 
-option {
-  background-color: #ccc !important; }
-
 .form_submit {
   background-color: #eee;
   border: none;

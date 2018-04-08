@@ -1,6 +1,29 @@
 extends layout
 
 block content
+  script.
+    var matches = JSON.parse(decodeURI('#{matches}'));
+    var curTrend = '#{curTrend}';
+
+  p.matches(style='display: none;') #{matches}
+  p.curTrend(style='display: none;') #{curTrend}
+
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  script(src='https://d3js.org/d3.v4.min.js')
+  script(src='javascript/viz.js')
+  link(href='stylesheets/viz.css', rel='stylesheet')
   h1= title
   p Welcome to #{title} test
-  p Current trend: #{trend}
+  p Current trend: #{curTrend}
+
+  div#legend
+    p#baseTrend
+    p#targetTrend
+
+  label(for='trend') Current Target Trend
+  <br />
+  select.trend.form_control(name='trend')
+    option(value='test1') Test 1
+    option(value='test2') Test 2
+
+  div#graph.aGraph(style='position:absolute;top:0px;left:0; float:left;"')
