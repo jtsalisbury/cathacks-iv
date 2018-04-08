@@ -4,7 +4,7 @@ let formidable = require('formidable');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {title: 'Data Viewer Thingy'});
+  res.render('index', {title: 'DVTIO'});
 });
 
 router.post('/upload', (req, res, next) => {
@@ -15,7 +15,7 @@ router.post('/upload', (req, res, next) => {
   form.parse(req, (err, fields, files) => {
     if (err) {
         res.redirect('/', {
-          title: 'Data Viewer Thingy',
+          title: 'DVTIO',
           errMsg: 'File Upload Failed!'
         });
       } else {
