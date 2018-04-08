@@ -55,7 +55,8 @@ router.get('/viz', function(req, res, next) {
   // Trend Identifier = [file name, x column, y column,
   // start date (string), end date (string)]
     'test1': ['data.csv', 'date', 'close', '1-May-12', '26-Mar-12'],
-    'test2': ['data2.csv', 'date', 'close', '1-May-12', '26-Mar-12']
+    'test2': ['data2.csv', 'date', 'close', '1-May-12', '26-Mar-12'],
+    'test3': ['data3.csv', 'date', 'close', '1-May-12', '26-Mar-12']
   };
 
   res.render('viz', {title: 'View Data',

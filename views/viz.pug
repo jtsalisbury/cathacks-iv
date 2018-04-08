@@ -12,18 +12,20 @@ block content
   script(src='https://d3js.org/d3.v4.min.js')
   script(src='javascript/viz.js')
   link(href='stylesheets/viz.css', rel='stylesheet')
-  h1= title
-  p Welcome to #{title} test
-  p Current trend: #{curTrend}
 
-  div#legend
-    p#baseTrend
-    p#targetTrend
+  div.container
+    h1.header Viewing Data Set #{curTrend}
 
-  label(for='trend') Current Target Trend
-  <br />
-  select.trend.form_control(name='trend')
-    option(value='test1') Test 1
-    option(value='test2') Test 2
+    p.subHeader You can select to view this data set against others by using the select below
 
-  div#graph.aGraph(style='position:absolute;top:0px;left:0; float:left;"')
+    div.section
+      div#legend
+        p#baseTrend
+        p#targetTrend
+
+      label(for='trend') Current Target Trend
+      <br />
+      select.trendSelect.form_control(name='trend')
+        option(value='') -Select A Target-
+      <br />
+      div#graph.aGraph
