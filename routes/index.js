@@ -15,7 +15,7 @@ const MIN_DATE = '08/23/0000';
 const MAX_DATE = '08/23/9999';
 
 // file constants
-const UPLOAD_DIR = 'uploads';
+const UPLOAD_DIR = process.env.STORAGE;
 
 
 /* GET home page. */
