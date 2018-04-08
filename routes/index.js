@@ -40,8 +40,8 @@ router.get('/viz', function(req, res, next) {
       if (trend != null) {
         models.Trend.findAll({
           where: {
-            trendlineCoef: {
-              [Op.between]: [trend.trendlineCoef-.5, trend.trendlineCoef+.5]
+            trendline_coef: {
+              [Op.between]: [trend.trendline_coef-.5, trend.trendline_coef+.5]
             }
           }
         }).then(function(trends) {
