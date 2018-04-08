@@ -1,6 +1,9 @@
 extends layout
 
 block content
+  script(src='javascript/viz.js')
+  link(href='stylesheets/viz.css', rel='stylesheet')
   h1= title
   p Welcome to #{title} test
   p Current trend: #{trend}
+  <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
