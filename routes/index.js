@@ -21,9 +21,16 @@ const MAX_DATE = '08/23/9999';
 // file constants
 const UPLOAD_DIR = process.env.STORAGE;
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {title: 'DVTIO'});
+});
+
+router.get('/uploads', function(req, res) {
+  let requestedFile = req.path;
+  console.log(`req.path: ${JSON.stringify(requestedFile)}`);
+  res.sendFile(requestedFile, {root: path.join(__dirname, '../${UPLOAD_DIR}')});
 });
 
 router.post('/upload', (req, res, next) => {
@@ -67,16 +74,15 @@ router.post('/upload', (req, res, next) => {
           .on('data', getProcFunc(records, files.file))
           .on('end', getEndFunc(records, files.file));
 
-          //generateViz();
-
         // This passes the current trend we are interested in
-        res.redirect('/viz');
+        res.redirect('/viz?curTrend=' + fields.title);
       }
   });
 });
 
 // Take the trend we are interested in and compile a list of matching ones
 router.get('/viz', function(req, res, next) {
+  let trend = req.query.trend;
 
   models.Trend.find({
     order: [
@@ -91,58 +97,24 @@ router.get('/viz', function(req, res, next) {
             }
           }
         }).then(function(trends) {
-          //console.log(trends);
-
-          models.CsvData.findAll({
-            where: {
-              id: trend.CsvDatumId
-            }
-          }).then(function(csvRes) {
-            let xCol = csvRes[0].x_col;
-            let dataFile = csvRes[0].path;
-
-            let matches = {
-              [trend.title]: [dataFile, xCol, trend.y_col, "", ""]
-            };
-            
-            let t = Math.floor(Math.random() * (trends.length + 1));
-
-            //for (let t in trends) {
-              let tData = trends[t];
-
-              models.CsvData.findAll({
-                where: {
-                  id: trends[t].CsvDatumId
-                }
-              }).then(function(csvRes) {
-                xCol = csvRes[0].x_col;
-                dataFile = csvRes[0].path;
-
-                console.log(tData.title);
-
-                matches[ tData.title ] = [dataFile, xCol, tData.y_col, "", ""];
-              
-                res.render('viz', {title: 'DVTIO',
-                  curTrend: trend.title, 
-                  matches: encodeURI(JSON.stringify(matches)),
-                  uploadDir: UPLOAD_DIR
-                });
-              })
-            // }
-
-          })         
-
           console.log('Found this many trends:' + trends.length);
+          // here we will query for the connected CSV, load said csv, and then
+          // send to the renderer. oh boy
         });
       }
     }
-  );    
+  );
 
-  
+  let matches = {
+  // Trend Identifier = [file name, x column, y column,
+  // start date (string), end date (string)]
+    'test1': ['data.csv', 'date', 'close', '1-May-12', '26-Mar-12'],
+    'test2': ['data2.csv', 'date', 'close', '1-May-12', '26-Mar-12'],
+    'test3': ['data3.csv', 'date', 'close', '1-May-12', '26-Mar-12']
+  };
 
-  
-
-  
+  res.render('viz', {title: 'DVTIO',
+    curTrend: trend, matches: encodeURI(JSON.stringify(matches))});
 });
 
 module.exports = router;
