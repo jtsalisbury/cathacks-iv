@@ -7,24 +7,20 @@ block content
   link(href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css', rel='stylesheet')
   link(href='https://fonts.googleapis.com/css?family=Barlow', rel='stylesheet')
 
-  
-
-
-
-
   div.container
     h1.header Welcome to #{title}
 
     div#accordion.section
       a.accordionHeader View
       div.accordionSection
-        form(action='/viz', method='post')
+        form(action='/viz', method='get')
           div.form_group
-            label(for='trend') Trend:
+            label(for='trend') Data Set
+            <br />
             select.trend.form_control(name='trend')
               option(value='test1') Test 1
           div.form_group
-            input#submit.form_control(type='submit', name='Submit')
+            button.form_submit View Similar Trends
 
       a.accordionHeader Upload
 
@@ -32,10 +28,12 @@ block content
         form(action='/upload', method='post', enctype='multipart/form-data')
          
           div.form_group
-            label(for='file') File:
+            label(for='file') File
+            <br />
             input.file.form_control(type='file', name='file')
           div.form_group
-            label(for='title') Title:
+            label(for='title') Title
+            <br />
             input.title.form_control(type='text', name='title')
           div.form_group
-            input#submit.form_control(type='submit', name='Submit')
+            button.form_submit Submit
