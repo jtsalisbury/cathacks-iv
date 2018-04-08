@@ -1,13 +1,14 @@
 {
-		"env": {
-			"node": true,
-			"es6": true
-		},
+    "env": {
+      "node": true,
+      "es6": true
+    },
     "extends": "google",
     "rules": {
-    	"new-cap": "off",
-    	"comma-dangle": "off",
-    	"linebreak-style": "off",
-        "require-jsdoc": "off"
-    	}
+      "new-cap": "off",
+      "comma-dangle": "off",
+      "linebreak-style": "off",
+      "require-jsdoc": "off",
+      "guard-for-in": "off"
+    }
 }
