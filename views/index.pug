@@ -13,7 +13,7 @@ block content
     p.subHeader Here you can upload data sets to find other data sets with similar trends
 
     div#accordion.section
-      a.accordionHeader View
+      a.accordionHeader View Similar Trends
       div.accordionSection
         form(action='/viz', method='get')
           div.form_group
@@ -22,9 +22,9 @@ block content
             select.trend(name='trend')
               option(value='test1') Test 1
           div.form_group
-            button.form_submit View Similar Trends
+            button.form_submit View 
 
-      a.accordionHeader Upload
+      a.accordionHeader Upload a Data Set
 
       div#uploadContainer.container.accordionSection(style='display: none')
         form(action='/upload', method='post', enctype='multipart/form-data')
