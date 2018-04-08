@@ -110,48 +110,69 @@ $(document).ready(function() {
     let targetTrendX = matches[target][1];
     let targetTrendY = matches[target][2];
 
-    let targetTrend = d3.line()
-      .x(function(d) {
-        return x(d[targetTrendX]);
-      })
-      .y(function(d) {
-        return y(d[targetTrendY]);
-      });
+    var lines = $.ajax({
+      url: './' + uploadDir + '/' + baseTrendData[0],
+      success: function(res) {
+        var lines = res.split("\n");
+        var headers = lines[0].split(",");
 
-    d3.csv(uploadDir + '/' + matches[target][0], function(error, data) {
-      if (error) throw error;
+        for (var i = 0; i < headers.length; i++) {
+          if (i == targetTrendX) {
+            targetTrendX = headers[i].trim();
 
-      // format the data
-      data.forEach(function(d) {
-          d[targetTrendX] = parseTime(d[targetTrendX]);
-          d[targetTrendY] = +d[targetTrendY];
-      });
+            console.log('Found x! ' + targetTrendX);
+          }
 
-      // Scale the range of the data
-      x.domain(d3.extent(data, function(d) {
-        return d[targetTrendX];
-      }));
-      y.domain([0, d3.max(data, function(d) {
-        return d[targetTrendY];
-      })]);
+          if (i == targetTrendY) {
+            targetTrendY = headers[i].trim();
 
-      // Add the valueline path.
-      svg.append('path')
-          .data([data])
-          .attr('class', 'targetLine')
-          .attr('d', targetTrend)
-          .style('stroke', 'orange');
+            console.log('Found y! ' + targetTrendY);
+          }
+        }
 
-      // Add the X Axis
-      svg.append('g')
-          .attr('transform', 'translate(0,' + height + ')')
-          .call(d3.axisBottom(x));
+        let targetTrend = d3.line()
+          .x(function(d) {
+            return x(d[targetTrendX]);
+          })
+          .y(function(d) {
+            return y(d[targetTrendY]);
+          });
 
-      // Add the Y Axis
-      svg.append('g')
-          .call(d3.axisLeft(y));
+        d3.csv(uploadDir + '/' + matches[target][0], function(error, data) {
+          if (error) throw error;
 
-      $('#targetTrend').text(target);
+          // format the data
+          data.forEach(function(d) {
+              d[targetTrendX] = parseTime(d[targetTrendX]);
+              d[targetTrendY] = +d[targetTrendY];
+          });
+
+          // Scale the range of the data
+          x.domain(d3.extent(data, function(d) {
+            return d[targetTrendX];
+          }));
+          y.domain([0, d3.max(data, function(d) {
+            return d[targetTrendY];
+          })]);
+
+          // Add the valueline path.
+          svg.append('path')
+              .data([data])
+              .attr('class', 'targetLine')
+              .attr('d', targetTrend)
+              .style('stroke', 'orange');
+
+          // Add the X Axis
+          svg.append('g')
+              .attr('transform', 'translate(0,' + height + ')')
+              .call(d3.axisBottom(x));
+
+          // Add the Y Axis
+          svg.append('g')
+              .call(d3.axisLeft(y));
+
+          $('#targetTrend').text(target);
+        });
     });
   }
 
