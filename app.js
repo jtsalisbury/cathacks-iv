@@ -26,6 +26,7 @@ app.use(sassMiddleware({
 
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/public', express.static(__dirname + '/public'));
+app.use('/storage', express.static(__dirname + '/storage'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/favicon.ico', express.static('public/images/favicon.ico'));
