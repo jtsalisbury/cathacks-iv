@@ -215,9 +215,13 @@ function getEndFunc(acc, file) {
     }).then((csvData)=>{
       // TrendData: stores the coefficient for every column
     // for each column, make a new entry in TrendData
+    let flag = 0;
     for (let prop in data[0]) {
       // skip if this is the time column
-      if (prop == greatestRng.key) continue;
+      if (flag == 0) {
+        flag++;
+        continue;
+      }
 
       // calculate the slope
       // get a list of points (x=months,y=val)
