@@ -10,7 +10,11 @@ let Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 // Date constants
-const DATE_FORMAT = ['MM-DD-YYYY', 'DD-MM-YYYY', 'DD-MM-YY', 'MM-DD-YY'];
+const DATE_FORMAT = ['MM-DD-YYYY',
+                     'DD-MM-YYYY',
+                     'DD-MM-YY',
+                     'MM-DD-YY',
+                     'YYYY'];
 const MIN_DATE = '08/23/0000';
 const MAX_DATE = '08/23/9999';
 
