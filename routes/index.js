@@ -46,6 +46,8 @@ router.get('/viz', function(req, res, next) {
           }
         }).then(function(trends) {
           console.log('Found this many trends:' + trends.length);
+          // here we will query for the connected CSV, load said csv, and then
+          // send to the renderer. oh boy
         });
       }
     }
