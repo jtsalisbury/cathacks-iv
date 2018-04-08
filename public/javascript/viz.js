@@ -45,7 +45,7 @@ $(document).ready(function() {
           return y(d[baseTrendY]);
         });
 
-        d3.csv(uploadDir + '/' + matches[curTrend][0], function(error, data) {
+        d3.csv('./uploads/' + matches[curTrend][0], function(error, data) {
           if (error) throw error;
 
           // format the data
@@ -137,7 +137,7 @@ $(document).ready(function() {
             return y(d[targetTrendY]);
           });
 
-        d3.csv(uploadDir + '/' + matches[target][0], function(error, data) {
+        d3.csv('./uploads/' + matches[target][0], function(error, data) {
           if (error) throw error;
 
           // format the data
