@@ -14,14 +14,12 @@ router.post('/upload', (req, res, next) => {
   form.type = true;
   form.parse(req, (err, fields, files) => {
     if (err) {
-
         res.redirect('/', {
           title: 'Data Viewer Thingy',
           errMsg: 'File Upload Failed!'
-        })
-
+        });
       } else {
-        res.redirect("/viz?trend=" + fields.title);
+        res.redirect('/viz?trend=' + fields.title);
       }
   });
 });
