@@ -208,7 +208,7 @@ function getEndFunc(acc, file) {
     models.CsvData.create({
       path: file.path.slice(UPLOAD_DIR.length+1),
       title: file.title,
-      x_col: headers.indexOf(greatestRng.key),
+      x_col: 0,
       start_date: new Date(greatestRng.min),
       end_date: new Date(greatestRng.max),
       interval: -1
