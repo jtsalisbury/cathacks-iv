@@ -173,8 +173,8 @@ $(document).ready(function() {
 
           $('#targetTrend').text(target);
         });
-    });
-  }
+    };
+  })
 
   $(document).on('change', '.trendSelect', function(e) {
     let target = this.options[e.target.selectedIndex].text;
