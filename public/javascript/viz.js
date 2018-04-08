@@ -104,7 +104,6 @@ $(document).ready(function() {
 
   // Get the data
   
-
   // Generates the graph for the targetted line
   function generateTargetLine(target) {
     let targetTrendX = matches[target][1];
@@ -173,7 +172,7 @@ $(document).ready(function() {
 
           $('#targetTrend').text(target);
         });
-    };
+    }
   })
 
   $(document).on('change', '.trendSelect', function(e) {
