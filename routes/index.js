@@ -125,7 +125,6 @@ function getEndFunc(acc, file) {
     // start by taking columns with valid dates in them
     let timeColCands = [];
     for (let prop in data[0]) {
-        console.log(`data[0][${prop}]: ${data[0][prop]}`);
         if (moment(data[0][prop],
             DATE_FORMAT,
             'en').isValid()) {
@@ -209,9 +208,8 @@ function getEndFunc(acc, file) {
       start_date: new Date(greatestRng.min),
       end_date: new Date(greatestRng.max),
       interval: -1
-    });
-
-    // TrendData: stores the coefficient for every column
+    }).then((csvData)=>{
+      // TrendData: stores the coefficient for every column
     // for each column, make a new entry in TrendData
     for (let prop in data[0]) {
       // skip if this is the time column
@@ -234,9 +232,11 @@ function getEndFunc(acc, file) {
       models.Trend.create({
         title: prop,
         y_col: headers.indexOf(prop),
-        trendline_coef: model.equation[0]
+        trendline_coef: model.equation[0],
+        CsvDatumId: csvData.id
       });
     }
+    });
   };
 }
 
