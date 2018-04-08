@@ -18,7 +18,7 @@ $(document).ready(function() {
   let baseTrendY = baseTrendData[2];
 
   var lines = $.ajax({
-    url: './' + uploadDir + '/' + baseTrendData[0],
+    url: './uploads/' + baseTrendData[0],
     success: function(res) {
       var lines = res.split("\n");
       var headers = lines[0].split(",");
@@ -110,7 +110,7 @@ $(document).ready(function() {
     let targetTrendY = matches[target][2];
 
     var lines = $.ajax({
-      url: './' + uploadDir + '/' + baseTrendData[0],
+      url: './uploads/' + baseTrendData[0],
       success: function(res) {
         var lines = res.split("\n");
         var headers = lines[0].split(",");
