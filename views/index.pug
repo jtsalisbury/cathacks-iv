@@ -7,35 +7,35 @@ block content
   link(href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css', rel='stylesheet')
   link(href='https://fonts.googleapis.com/css?family=Barlow', rel='stylesheet')
 
-  
-
-
-
-
   div.container
     h1.header Welcome to #{title}
 
+    p.subHeader Here you can upload data sets to find other data sets with similar trends
+
     div#accordion.section
-      a.accordionHeader View
+      a.accordionHeader View Similar Trends
       div.accordionSection
-        form(action='/viz', method='post')
+        form(action='/viz', method='get')
           div.form_group
-            label(for='trend') Trend:
-            select.trend.form_control(name='trend')
+            label(for='trend') Data Set
+            <br />
+            select.trend(name='trend')
               option(value='test1') Test 1
           div.form_group
-            input#submit.form_control(type='submit', name='Submit')
+            button.form_submit View 
 
-      a.accordionHeader Upload
+      a.accordionHeader Upload a Data Set
 
       div#uploadContainer.container.accordionSection(style='display: none')
         form(action='/upload', method='post', enctype='multipart/form-data')
          
           div.form_group
-            label(for='file') File:
-            input.file.form_control(type='file', name='file')
+            label(for='file') File
+            <br />
+            input.file(type='file', name='file')
           div.form_group
-            label(for='title') Title:
-            input.title.form_control(type='text', name='title')
+            label(for='title') Title
+            <br />
+            input.title(type='text', name='title')
           div.form_group
-            input#submit.form_control(type='submit', name='Submit')
+            button.form_submit Submit

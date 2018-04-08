@@ -1,6 +1,35 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} test
-  p Current trend: #{trend}
+  script.
+    var matches = JSON.parse(decodeURI('#{matches}'));
+    var curTrend = '#{curTrend}';
+
+  p.matches(style='display: none;') #{matches}
+  p.curTrend(style='display: none;') #{curTrend}
+
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  script(src='https://d3js.org/d3.v4.min.js')
+  script(src='javascript/viz.js')
+  link(href='https://fonts.googleapis.com/css?family=Barlow', rel='stylesheet')
+  link(href='stylesheets/viz.css', rel='stylesheet')
+
+  div.container
+    h1.header Viewing Data Set #{curTrend}
+
+    p.subHeader You can view this data set against ones with similar trends by using the drop down below
+
+    div.section
+      div#legend
+        p.legendHeader Legend
+        p#baseTrend
+        p#targetTrend
+
+      a.back(href='/')
+        button Back
+      label(for='trend') Current Target Trend
+      <br />
+      select.trendSelect.form_control(name='trend')
+        option(value='') -Select A Target-
+      <br />
+      div#graph.aGraph

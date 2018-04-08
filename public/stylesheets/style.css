@@ -1,20 +1,14 @@
 body {
   padding: 50px;
-  font-family: 'Barlow';
   text-decoration: none;
   background-color: #f8f8f8; }
 
+* {
+  font-family: 'Barlow';
+  outline: none; }
+
 a {
   color: #00B7FF; }
-
-.error {
-  padding: 20px;
-  background-color: #f45c42;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-size: 32px; }
 
 .container {
   width: 100%;
@@ -24,9 +18,10 @@ a {
   padding-bottom: 20px; }
 
 .container .header {
-  padding-top: 20px;
-  width: 100%;
-  text-align: center; }
+  padding: 20px 0px 20px 0px;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto; }
 
 .section {
   width: 90%;
@@ -42,7 +37,42 @@ a {
   padding: 10px 0px 10px 10px;
   background-color: #eee; }
 
+.subHeader {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 30px; }
+
 .accordionHeader:hover {
+  background-color: #ccc;
+  cursor: pointer; }
+
+.form_group {
+  padding-top: 10px; }
+
+input[type=text] {
+  background-color: white;
+  height: 30px;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  padding: 0px 8px 0px 8px; }
+
+select {
+  background-color: white;
+  width: 300px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #eee; }
+
+button {
+  background-color: #eee;
+  border: none;
+  color: black;
+  padding: 12px 32px;
+  border-radius: 4px; }
+
+button:hover {
   background-color: #ccc;
   cursor: pointer; }
 
